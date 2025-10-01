@@ -46,17 +46,10 @@ pip install -r requirements.txt
 ```
 
 Dependencies include:
-
 * Python 3.8+
-
 * pandas, numpy
-
 * scikit-learn
-
 * xgboost
-
 * matplotlib, seaborn
-
 * shap
-
 * scikit-uplift
