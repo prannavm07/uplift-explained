@@ -29,4 +29,34 @@ The project explores how **uplift modeling** can improve targeted marketing deci
 ├── data/                  # Dataset (not included for licensing)
 ├── images/                # Plots and visualizations (uplift curves, SHAP, etc.)
 └── README.md              # Project overview
+```
 
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repository:
+```bash
+git clone https://github.com/yourusername/uplift-modeling-dissertation.git
+cd uplift-modeling-dissertation
+```
+Create a virtual environment & install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+Dependencies include:
+
+* Python 3.8+
+
+* pandas, numpy
+
+* scikit-learn
+
+* xgboost
+
+* matplotlib, seaborn
+
+* shap
+
+* scikit-uplift
