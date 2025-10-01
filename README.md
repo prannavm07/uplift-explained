@@ -26,8 +26,6 @@ The project explores how **uplift modeling** can improve targeted marketing deci
 ```bash
 ├── Final Code.ipynb       # Jupyter notebook with full implementation
 ├── Final_Report.pdf       # Full dissertation report
-├── data/                  # Dataset (not included for licensing)
-├── images/                # Plots and visualizations (uplift curves, SHAP, etc.)
 └── README.md              # Project overview
 ```
 
@@ -53,3 +51,69 @@ Dependencies include:
 * matplotlib, seaborn
 * shap
 * scikit-uplift
+
+## 📖 Usage
+
+Run the Jupyter Notebook to reproduce results:
+```bash
+jupyter notebook "Final Code.ipynb"
+```
+Example: Training and evaluating a Two-Model Classifier:
+```python
+from sklift.models import TwoModels
+from sklearn.ensemble import RandomForestClassifier
+
+tm = TwoModels(
+    estimator_trmnt=RandomForestClassifier(n_estimators=100, random_state=42),
+    estimator_ctrl=RandomForestClassifier(n_estimators=100, random_state=42)
+)
+tm.fit(X_train, y_train, treatment=train_treatment)
+uplift_scores = tm.predict(X_test)
+```
+---
+
+## 📊 Results
+
+The models were evaluated on uplift prediction accuracy.
+| Model                     | Men’s Uplift | Women’s Uplift |
+| ------------------------- | ------------ | -------------- |
+| Single-Learner (XGBoost)  | 0.0580       | 0.0377         |
+| SKLift TwoModel RF        | 0.0624       | 0.0162         |
+| Custom Two-Model (RF)     | **0.0647**   | 0.0187         |
+| T-Learner (GradientBoost) | 0.0639       | 0.0306         |
+
+📈 Visuals & Insights
+* Uplift curves show Custom Two-Model achieved the strongest uplift, particularly in the men’s campaign.
+* SHAP analysis revealed recency, history, and newbie as the most influential features driving uplift.
+
+---
+
+## 🔎 Key Insights
+
+* Uplift modeling provides better targeting than traditional methods.
+* Custom Two-Model performed best overall.
+* Explainability (via SHAP) adds transparency, crucial for business decision-making.
+
+---
+
+## 📚 Reference
+This project was submitted as part of the MSc Data Science program at the University of Exeter.
+For the full dissertation, see [Final_Report.pdf](https://github.com/prannavm07/uplift-explained/blob/main/Final_Report.pdf)
+
+If you use this work, please cite:
+```bibtex
+@thesis{more2025uplift,
+  title={Comparative Analysis and Explainability of Uplift Modeling Techniques for Targeted Marketing Campaigns},
+  author={Pranav More},
+  year={2025},
+  school={University of Exeter}
+}
+```
+
+---
+
+## 🙌 Acknowledgements
+
+* Supervisor: Dr. Aishwaryaprajna
+* Hillstrom dataset provider
+* Libraries: scikit-learn, scikit-uplift, XGBoost, SHAP
